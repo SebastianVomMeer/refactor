@@ -1,0 +1,3 @@
+class Special::BannedUser
+
+end
