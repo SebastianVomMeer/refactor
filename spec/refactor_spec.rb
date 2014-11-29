@@ -9,10 +9,16 @@ describe Refactor do
 
     it 'renames relevant files' do
       run
+
       expect('app/model/banned_user.rb').to_not be_a_file
       expect('app/model/special/banned_user.rb').to_not be_a_file
       expect('app/model/ignored_user.rb').to be_a_file
       expect('app/model/special/ignored_user.rb').to be_a_file
+      
+      expect(file_contents('app/model/ignored_user.rb')).to_not include 'BannedUser'
+      expect(file_contents('app/model/special/ignored_user.rb')).to_not include 'BannedUser'
+      expect(file_contents('app/model/ignored_user.rb')).to include 'IgnoredUser'
+      expect(file_contents('app/model/special/ignored_user.rb')).to include 'Special::IgnoredUser'
     end
 
   end

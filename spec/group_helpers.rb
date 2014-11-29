@@ -9,6 +9,13 @@ module GroupHelpers
 		'/tmp/test_project'
 	end
 
+	def file_contents(file_path)
+		file = File.open(file_path)
+		contents = file.read
+		file.close
+		contents
+	end
+
 
 	private
 
